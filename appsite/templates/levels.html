@@ -1,0 +1,151 @@
+{% extends "base.html" %}
+{% block contentBar %}
+{% include 'topbar.html' %}
+{% include 'sidebar.html' %}
+{% endblock contentBar %}
+
+{% block content %}
+<div class="page-content">
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-md-6 col-lg-6 col-xl-3">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="mini-stat clearfix">
+                            <span class="font-size-40 text-primary me-0 float-end"><i
+                                    class="mdi mdi-cart-outline"></i></span>
+                            <div class="mini-stat-info">
+                                <h3 class="counter fw-normal mt-0">$36,410</h3>
+                            </div>
+                            <div class="clearfix"></div>
+                            <p class=" mb-0 mt-3 text-muted">Total Orders <span class="float-end"><i
+                                        class="fa fa-caret-down text-danger me-1"></i>3.25%</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-6 col-xl-3">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="mini-stat clearfix">
+                            <span class="font-size-40 text-success me-0 float-end"><i
+                                    class="mdi mdi-currency-usd"></i></span>
+                            <div class="mini-stat-info">
+                                <h3 class="counter fw-normal mt-0">$29,854</h3>
+                            </div>
+                            <div class="clearfix"></div>
+                            <p class=" mb-0 mt-3 text-muted">Successful Orders <span class="float-end"><i
+                                        class="fa fa-caret-up text-success me-1"></i>8.51%</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-6 col-xl-3">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="mini-stat clearfix">
+                            <span class="font-size-40 text-warning me-0 float-end"><i
+                                    class="mdi mdi-fingerprint"></i></span>
+                            <div class="mini-stat-info">
+                                <h3 class="counter fw-normal mt-0">$4,512</h3>
+                            </div>
+                            <div class="clearfix"></div>
+                            <p class=" mb-0 mt-3 text-muted">Refunds <span class="float-end"><i
+                                        class="fa fa-caret-down text-danger me-1"></i>5.52%</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-6 col-xl-3">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="mini-stat clearfix">
+                            <span class="font-size-40 text-danger me-0 float-end"><i
+                                    class="mdi mdi-rotate-right"></i></span>
+                            <div class="mini-stat-info">
+                                <h3 class="counter fw-normal mt-0">$2,854</h3>
+                            </div>
+                            <div class="clearfix"></div>
+                            <p class=" mb-0 mt-3 text-muted">Chargebacks <span class="float-end"><i
+                                        class="fa fa-caret-up text-success me-1"></i>7.10%</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <table id="datatable" class="table table-striped dt-responsive nowrap table-vertical"
+                            style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                            <thead>
+                                <tr>
+                                    <th>Level Name</th>
+                                    <th>Level Type</th>
+                                    <!-- <th>Amount</th> -->
+                                    <!-- <th>Order Date</th> -->
+                                    <!-- <th>Payment</th> -->
+                                    <th>Expense Applicable</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for i in levelList%}
+                                    <tr>
+                                        <td>{{i.LevelName}}</td>
+                                        <td>{{i.LevelType}}</td>
+                                        {% if i.IsExpenseApplicable %}
+                                            <td><span class="badge bg-success">Yes</span></td>
+                                        {% else %}
+                                            <td><span class="badge bg-danger">No</span></td>
+                                        {% endif %}
+                                        <td>
+                                        <a href="{% url 'level' i.id %}" class="me-3 text-muted"><i
+                                                class="mdi mdi-pencil font-size-18"></i></a>
+                                        <a href="javascript:void(0);" class="text-muted"><i
+                                                class="mdi mdi-close font-size-18"></i></a>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+<!--                                <tr>-->
+<!--                                    <td>Level 1</td>-->
+<!--                                    <td>Ground</td>-->
+<!--                                    &lt;!&ndash; <td>$45</td>-->
+<!--                                    <td>Jul 20, 2017</td>-->
+<!--                                    <td><i class="fab fa-cc-visa text-muted font-size-20"></i> </td> &ndash;&gt;-->
+<!--                                    <td><span class="badge bg-success">Yes</span></td>-->
+<!--                                    <td>-->
+<!--                                        <a href="javascript:void(0);" class="me-3 text-muted"><i-->
+<!--                                                class="mdi mdi-pencil font-size-18"></i></a>-->
+<!--                                        <a href="javascript:void(0);" class="text-muted"><i-->
+<!--                                                class="mdi mdi-close font-size-18"></i></a>-->
+<!--                                    </td>-->
+<!--                                </tr>-->
+
+
+                            </tbody>
+
+                        </table>
+                        <div class="button-items">
+                              <a href="{% url 'addlevel' %}" class="btn btn-success waves-effect waves-light" type="submit">Add Level</a>
+                          </div>
+                    </div>
+
+                </div>
+                
+            </div>
+
+        </div>
+
+
+    </div> <!-- container-fluid -->
+
+</div>
+
+<!-- End Page-content -->
+ {% endblock content %}
+

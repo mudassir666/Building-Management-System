@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block contentBar %}
+{% include 'topbar.html' %}
+{% include 'sidebar.html' %}
+{% endblock contentBar %}
+
+{% block content %}
+  <div class="page-content">
+      <div class="container-fluid">
+
+          <div class="row">
+              <div class="col-12">
+                  <div class="card">
+                      <div class="card-body">
+
+                          <div class="row mb-3">
+                              <label for="example-text-input" class="col-sm-2 col-form-label">Level Name</label>
+                              <div class="col-sm-10">
+                                  <input class="form-control" type="text" placeholder="Level 1"
+                                      id="example-text-input">
+                              </div>
+                          </div>
+
+                          <div class=" row mb-3">
+                              <label class="col-sm-2 col-form-label">Level Type</label>
+                              <div class="col-sm-10">
+                                  <select class="form-select" aria-label="Default select example">
+                                      <option selected>Select</option>
+                                      <option value="1">Basement</option>
+                                      <option value="2">Ground</option>
+                                      <option value="3">Mezanine</option>
+                                      <option value="4">Floors</option>
+                                  </select>
+                              </div>
+                          </div>
+
+                          <div class=" row mb-3">
+                              <label class="col-sm-2 col-form-label">Is Expense Applicable</label>
+                              <div class="col-sm-10">
+                                  <select class="form-select" aria-label="Default select example">
+                                      <option selected>Select</option>
+                                      <option value="1">Yes</option>
+                                      <option value="2">No</option>
+                                  </select>
+                              </div>
+                          </div>
+
+                          <div class="button-items">
+                              <a href="{% url 'levels' %}" class="btn btn-success waves-effect waves-light" type="submit">Submit</a>
+                          </div>
+                      </div>
+                  </div>
+              </div> <!-- end col -->
+          </div> <!-- end row -->
+      </div> <!-- container-fluid -->
+  </div>
+  <!-- End Page-content -->
+ {% endblock content %}
