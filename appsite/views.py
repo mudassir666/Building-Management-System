@@ -3,6 +3,7 @@ from .models import *
 
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from .forms import LevelsForm, MembersForm, UnitsForm
 
 def loginPage(request):
     if request.user.is_authenticated:
@@ -79,9 +80,6 @@ def level(request, pk):
 def addlevel(request):
     return render(request, 'addlevel.html', {})
 
-@login_required(login_url='addunit.html')
-def addunit(request):
-    return render(request, 'addunit.html', {})
 
 @login_required(login_url='login')
 def units(request):
@@ -125,6 +123,132 @@ def unit(request, pk):
             return render(request, 'fortesting.html', {'unit':unit})
 
     return render(request, 'notfound.html',{})
+
+@login_required(login_url='login')
+def addmembers(request):
+
+    form = MembersForm()
+    
+    if request.method == "POST":
+        print("--->>>>",request.POST)
+        MemberType = request.POST['MemberType']
+        OwnerType=request.POST['OwnerType']
+        OccupantType = request.POST['OccupantType']
+        MemberName = request.POST['MemberName']
+        CellPhone = request.POST['CellPhone']
+        Email = request.POST['Email']
+        AddressLine1 = request.POST['AddressLine1']
+        AddressLine2 = request.POST['AddressLine2']
+        City= request.POST['City']
+        Province= request.POST['Province']
+        PostalCode= request.POST['PostalCode']
+
+        # if IsExpenseApplicable == 'true':
+        #     IsExpenseApplicable  = True
+        # else:
+        #     IsExpenseApplicable = False
+            
+        currentUserId = request.user.id
+        all = BuildingUsers.objects.filter(user__id=currentUserId)
+        print(all[0].id)
+        currentBuildingId = all[0].id
+
+        buildings = Buildings.objects.get(id=currentBuildingId)
+
+        ins = Members(MemberType=MemberType,
+                     OwnerType=OwnerType,
+                     OccupantType=OccupantType,
+                     MemberName=MemberName,
+                     CellPhone=CellPhone,
+                     Email=Email,
+                     AddressLine1=AddressLine1,
+                     AddressLine2=AddressLine2,
+                     City=City,
+                     Province=Province,
+                     PostalCode=PostalCode,
+                     buildings=buildings)
+        print(ins)
+        ins.save()
+       
+        return redirect('/members')
+    context = {'form':form}
+    return render(request, 'addmembers.html', context)
+
+@login_required(login_url='addunit.html')
+def addunit(request):
+
+    form = UnitsForm()
+    
+    if request.method == "POST":
+        print("--->>>>",request.POST)
+        # MemberType = request.POST['MemberType']
+        # OwnerType=request.POST['OwnerType']
+        # OccupantType = request.POST['OccupantType']
+        # MemberName = request.POST['MemberName']
+        # CellPhone = request.POST['CellPhone']
+        # Email = request.POST['Email']
+        # AddressLine1 = request.POST['AddressLine1']
+        # AddressLine2 = request.POST['AddressLine2']
+        # City= request.POST['City']
+        # Province= request.POST['Province']
+        # PostalCode= request.POST['PostalCode']
+
+        UnitName = request.POST['UnitName']
+        OccupiedStatus = request.POST['OccupiedStatus']
+        UnitType = request.POST['UnitType']
+        CoveredArea = request.POST['CoveredArea']
+        IsDisputed = request.POST['IsDisputed']
+        DisputeDesc = request.POST['DisputeDesc']
+        IsMaintenanceApplicable = request.POST['IsMaintenanceApplicable']
+        CurrentMaintenancePM = request.POST['CurrentMaintenancePM']
+        IsBLExpenseApplicable = request.POST['IsBLExpenseApplicable']
+        IsDLExpenseApplicable = request.POST['IsDLExpenseApplicable']
+        IsULExpenseApplicable = request.POST['IsULExpenseApplicable']
+
+        # if IsExpenseApplicable == 'true':
+        #     IsExpenseApplicable  = True
+        # else:
+        #     IsExpenseApplicable = False
+            
+        currentUserId = request.user.id
+        all = BuildingUsers.objects.filter(user__id=currentUserId)
+        print(all[0].id)
+        currentBuildingId = all[0].id
+
+        buildings = Buildings.objects.get(id=currentBuildingId)
+
+        # ins = Members(MemberType=MemberType,
+        #              OwnerType=OwnerType,
+        #              OccupantType=OccupantType,
+        #              MemberName=MemberName,
+        #              CellPhone=CellPhone,
+        #              Email=Email,
+        #              AddressLine1=AddressLine1,
+        #              AddressLine2=AddressLine2,
+        #              City=City,
+        #              Province=Province,
+        #              PostalCode=PostalCode,
+        #              buildings=buildings)
+        ins = Units(
+                    UnitName=UnitName,
+                    OccupiedStatus=OccupiedStatus,
+                    UnitType=UnitType,
+                    CoveredArea=CoveredArea,
+                    IsDisputed=IsDisputed,
+                    DisputeDesc = DisputeDesc,
+                    IsMaintenanceApplicable=IsMaintenanceApplicable,
+                    CurrentMaintenancePM=CurrentMaintenancePM,
+                    IsBLExpenseApplicable = IsBLExpenseApplicable,
+                    IsDLExpenseApplicable=IsDLExpenseApplicable,
+                    IsULExpenseApplicable=IsULExpenseApplicable,
+                    buildings=buildings
+        )
+        print(ins)
+        ins.save()
+       
+        return redirect('units')
+    context = {'form':form}
+    return render(request, 'addunit.html', context)
 
 
 # @login_required(login_url='login')

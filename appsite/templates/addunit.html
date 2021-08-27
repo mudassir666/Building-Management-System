@@ -7,7 +7,7 @@
 {% block content %}
 
 <body>
-    <form method="POST", action="/units">
+    <form method="POST", action="">
     {% csrf_token %}
   <div class="page-content">
       <div class="container-fluid">
@@ -20,102 +20,65 @@
                           <div class="row mb-3">
                               <label for="example-text-input" class="col-sm-2 col-form-label">Unit Name</label>
                               <div class="col-sm-10">
-                                  <input class="form-control" type="text" placeholder="Unit 1"
-                                      id="example-text-input">
+                                {{form.UnitName}}
                               </div>
                           </div>
                           <div class=" row mb-3">
                               <label class="col-sm-2 col-form-label">Occupied Status</label>
                               <div class="col-sm-10">
-                                  <select class="form-select" aria-label="Default select example">
-                                      <option selected>Select Status</option>
-                                      <option value="1">Empty</option>
-                                      <option value="2">Occupied By Owner</option>
-                                      <option value="3">Occupied By Tenant</option>
-                                  </select>
+                                {{form.OccupiedStatus}}
                               </div>
                           </div>
                           <div class=" row mb-3">
                               <label class="col-sm-2 col-form-label">Unit Type</label>
                               <div class="col-sm-10">
-                                  <select class="form-select" aria-label="Default select example">
-                                      <option selected>Select Type</option>
-                                      <option value="1">Flat</option>
-                                      <option value="2">Office</option>
-                                      <option value="3">Shop</option>
-                                      <option value="4">Store</option>
-                                      <option value="5">Car Parking Area</option>
-                                  </select>
+                                {{form.UnitType}}
                               </div>
                           </div>
                           <div class="row mb-3">
                               <label for="example-text-input" class="col-sm-2 col-form-label">Covered Area</label>
                               <div class="col-sm-10">
-                                  <input class="form-control" type="text" placeholder="50 yards"
-                                      id="example-text-input">
+                                {{form.CoveredArea}}
                               </div>
                           </div>
                           <div class=" row mb-3">
                               <label class="col-sm-2 col-form-label">Is Disputed</label>
                               <div class="col-sm-10">
-                                  <select class="form-select" aria-label="Default select example">
-                                      <option selected>Dispute Type</option>
-                                      <option value="1">Yes</option>
-                                      <option value="2">No</option>
-                                  </select>
+                                {{form.IsDisputed}}
                               </div>
                           </div>
                           <div class="row mb-3">
                               <label for="example-text-input" class="col-sm-2 col-form-label">Dispute Discussion</label>
                               <div class="col-sm-10">
-                                  <input class="form-control" type="text" placeholder="Dispute detail"
-                                      id="example-text-input">
+                                {{form.DisputeDesc}}
                               </div>
                           </div>
                           <div class=" row mb-3">
                               <label class="col-sm-2 col-form-label">Is Maintenance Applicable</label>
                               <div class="col-sm-10">
-                                  <select class="form-select" aria-label="Default select example">
-                                      <option selected>Dispute Type</option>
-                                      <option value="1">Yes</option>
-                                      <option value="2">No</option>
-                                  </select>
+                                {{form.IsMaintenanceApplicable}}
                               </div>
                           </div>
                           <div class="row mb-3">
                               <label for="example-text-input" class="col-sm-2 col-form-label">Current Maintenance Per Month </label>
-                              <div class="col-sm-10">
-                                  <input class="form-control" type="number" onchange="setTwoNumberDecimal" min="0"  step="0.1" value="0.00">
-                              </div>
+                              {{form.CurrentMaintenancePM}}
                           </div>
                           <div class=" row mb-3">
                               <label class="col-sm-2 col-form-label">Is BL Expense Applicable</label>
                               <div class="col-sm-10">
-                                  <select class="form-select" aria-label="Default select example">
-                                      <option selected>BL Expense Type</option>
-                                      <option value="1">Yes</option>
-                                      <option value="2">No</option>
-                                  </select>
+                                {{form.IsBLExpenseApplicable}}
                               </div>
                           </div>
                           <div class=" row mb-3">
                               <label class="col-sm-2 col-form-label">Is DL Expense Applicable</label>
                               <div class="col-sm-10">
-                                  <select class="form-select" aria-label="Default select example">
-                                      <option selected>DL Expense Type</option>
-                                      <option value="1">Yes</option>
-                                      <option value="2">No</option>
-                                  </select>
+                                {{form.IsDLExpenseApplicable}}
                               </div>
                           </div>
                           <div class=" row mb-3">
                               <label class="col-sm-2 col-form-label">Is UL Expense Applicable</label>
                               <div class="col-sm-10">
-                                  <select class="form-select" aria-label="Default select example">
-                                      <option selected>UL Expense Type</option>
-                                      <option value="1">Yes</option>
-                                      <option value="2">No</option>
-                                  </select>
+                                {{form.IsULExpenseApplicable}}
                               </div>
                           </div>
                           <div class="button-items">

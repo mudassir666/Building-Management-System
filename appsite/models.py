@@ -69,25 +69,66 @@ class Levels(models.Model):
 
 class Units(models.Model):
 
+    OccupiedStatusTypes=(
+        ('Empty', 'Empty'),
+        ('Occupied By Owner','Occupied By Owner'),
+        ('Occupied By Tenant','Occupied By Tenant')
+    )
+
+    
+    UnitTypeTypes=(
+        ('Flat', 'Flat'),
+        ('Office','Office'),
+        ('Shop', 'Shop'),
+        ('Store','Store'),
+        ('Car Parking Area','Car Parking Area')
+    )
+
+    IsDisputedTypes=(
+        (True, True),
+        (False,False)
+    )
+
+    IsMaintenanceApplicableTypes=(
+        (True, True),
+        (False,False)
+    )
+
+    IsBLExpenseApplicableTypes=(
+        (True, True),
+        (False,False)
+    )
+
+    IsDLExpenseApplicableTypes=(
+        (True, True),
+        (False,False)
+    )
+
+
+    IsULExpenseApplicableTypes=(
+        (True, True),
+        (False,False)
+    )
+
     UnitName = models.CharField(max_length=200,null=True)
-    OccupiedStatus = models.PositiveSmallIntegerField(default=1, null=True)
-    UnitType = models.PositiveSmallIntegerField(default=1, null=True)
+    OccupiedStatus = models.CharField(max_length=200, null=True,choices=OccupiedStatusTypes)
+    UnitType = models.CharField(max_length=200, null=True,choices=UnitTypeTypes)
     OwnedByMemberId = models.PositiveIntegerField(null=True)
     OccupiedByMemberId = models.PositiveIntegerField(null=True)
     CoveredArea = models.CharField(max_length=200,null=True)
-    IsDisputed = models.BooleanField(null=True)
+    IsDisputed = models.BooleanField(default=True,null=True,choices=IsDisputedTypes)
     DisputeDesc = models.TextField()
-    IsMaintenanceApplicable = models.BooleanField(null=True)
+    IsMaintenanceApplicable = models.BooleanField(default=True,null=True,choices=IsMaintenanceApplicableTypes)
     CurrentMaintenancePM = models.DecimalField(decimal_places=6,max_digits=30,null=True)
-    IsBLExpenseApplicable = models.BooleanField(null=True)
-    IsDLExpenseApplicable = models.BooleanField(null=True)
-    IsULExpenseApplicable = models.BooleanField(null=True)
+    IsBLExpenseApplicable = models.BooleanField(default=True,null=True,choices=IsBLExpenseApplicableTypes)
+    IsDLExpenseApplicable = models.BooleanField(default=True,null=True,choices=IsDLExpenseApplicableTypes)
+    IsULExpenseApplicable = models.BooleanField(default=True,null=True,choices=IsULExpenseApplicableTypes)
     IsActive = models.BooleanField(null=True,default=True)
     levels = models.ForeignKey(Levels, null=True, on_delete=models.DO_NOTHING)
     buildings = models.ForeignKey(Buildings, null=True, on_delete=models.DO_NOTHING)
 
     def __str__(self):
-        return self.UnitName+" "+self.levels.LevelName+" "+ self.buildings.BuildingName +" id="+ str(self.id)
+        return self.UnitName+" "+ self.buildings.BuildingName +" id="+ str(self.id)
     
 class Members(models.Model):
     MemberType = models.PositiveSmallIntegerField(null=True)
