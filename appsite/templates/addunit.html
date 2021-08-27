@@ -5,6 +5,10 @@
 {% endblock contentBar %}
 
 {% block content %}
+
+<body>
+    <form method="POST", action="/units">
+    {% csrf_token %}
   <div class="page-content">
       <div class="container-fluid">
 
@@ -114,6 +118,9 @@
                                   </select>
                               </div>
                           </div>
+                          <div class="button-items">
+                            <button href="{% url 'units' %}" class="btn btn-success waves-effect waves-light" type="submit">Submit</button>
+                        </div>
 
                       </div>
                   </div>
@@ -121,5 +128,7 @@
           </div> <!-- end row -->
       </div> <!-- container-fluid -->
   </div>
+</form>
+</body>
   <!-- End Page-content -->
  {% endblock content %}

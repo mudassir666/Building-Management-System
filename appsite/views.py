@@ -121,7 +121,7 @@ def unit(request, pk):
 
     for i in unitList:
         if i.id == int(pk):
-            unit = units.objects.get(id=pk)
+            unit = Units.objects.get(id=pk)
             return render(request, 'fortesting.html', {'unit':unit})
 
     return render(request, 'notfound.html',{})

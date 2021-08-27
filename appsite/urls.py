@@ -17,6 +17,7 @@ urlpatterns = [
     path('units/addunit', views.addunit, name="addunit"),
     path('units', views.units, name="units"),
     path('members', views.members, name="members"),
+   # path('members/<str:pk>/', views.member, name="member"),
 
 
 ]
