@@ -16,6 +16,8 @@ urlpatterns = [
     path('levels/addlevel', views.addlevel, name="addlevel"),
     path('units/addunit', views.addunit, name="addunit"),
     path('units', views.units, name="units"),
+    path('deleteunit/<str:pk>/', views.deleteunit, name="deleteunit"),
+    path('updateunit/<str:pk>/', views.updateunit, name="updateunit"),
     path('members', views.members, name="members"),
    # path('members/<str:pk>/', views.member, name="member"),
 

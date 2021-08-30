@@ -264,3 +264,62 @@ def addunit(request):
 
 
 #     return render(request, 'units.html', {})
+
+@login_required(login_url='login')
+def updateunit(request, pk):
+    if currentUserAccess(request,pk): #called a function ^
+        unit  = Units.objects.get(id=pk)
+        form = UnitsForm(instance=unit)
+
+        if request.method == 'POST':
+
+            UnitName = request.POST.get('UnitName')
+            UnitType = request.POST.get('UnitType')
+            IsExpenseApplicable = request.POST.get('IsExpenseApplicable')
+
+            UnitName = request.POST.get('UnitName')
+            OccupiedStatus = request.POST.get('OccupiedStatus')
+            UnitType = request.POST.get('UnitType')
+            CoveredArea = request.POST.get('CoveredArea')
+            IsDisputed = request.POST.get('IsDisputed')
+            DisputeDesc = request.POST.get('DisputeDesc')
+            IsMaintenanceApplicable = request.POST.get('IsMaintenanceApplicable')
+            CurrentMaintenancePM = request.POST.get('CurrentMaintenancePM')
+            IsBLExpenseApplicable = request.POST.get('IsBLExpenseApplicable')
+            IsDLExpenseApplicable = request.POST.get('IsDLExpenseApplicable')
+            IsULExpenseApplicable = request.POST.get('IsULExpenseApplicable')
+
+            # if IsExpenseApplicable == 'true':
+            #     IsExpenseApplicable = True
+            # else:
+            #     IsExpenseApplicable = False
+            Units.objects.filter(id=pk).update(UnitName=UnitName,OccupiedStatus=OccupiedStatus,UnitType=UnitType,CoveredArea=CoveredArea,IsDisputed=IsDisputed,DisputeDesc=DisputeDesc,IsMaintenanceApplicable=IsMaintenanceApplicable,CurrentMaintenancePM=CurrentMaintenancePM,IsBLExpenseApplicable=IsBLExpenseApplicable,IsDLExpenseApplicable=IsDLExpenseApplicable,IsULExpenseApplicable=IsULExpenseApplicable)
+            # (UnitName=UnitName,OccupiedStatus=OccupiedStatus,UnitType=UnitType,CoveredArea=CoveredArea,IsDisputed=IsDisputed,DisputeDesc=DisputeDesc,IsMaintenanceApplicable=IsMaintenanceApplicable,CurrentMaintenancePM=CurrentMaintenancePM,IsBLExpenseApplicable=IsBLExpenseApplicable,IsDLExpenseApplicable=IsDLExpenseApplicable,IsULExpenseApplicable=IsULExpenseApplicable)
+            return redirect('/units')
+
+        context = {'form':form}
+        return render(request, 'updateunit.html', context)
+    else:
+        return render(request, 'notfound.html',{})
+
+@login_required(login_url='login')
+def deleteunit(request,pk):
+    if currentUserAccess(request, pk):
+        Units.objects.filter(id=pk).update(IsActive=False)
+        return redirect('/units')
+    else:
+        return render(request, 'notfound.html',{})
+
+def currentUserAccess(request, pk):
+    currentUserId = request.user.id
+    all = BuildingUsers.objects.filter(user__id=currentUserId)
+    for i in all:
+        currentBuildingId = i.buildings.id
+    unitList = []
+    if all:
+        unitList = Units.objects.filter(buildings__id=currentBuildingId, IsActive=True)
+    for i in unitList:
+        if i.id == int(pk):
+            return True
+    return False
+

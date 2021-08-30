@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+{% block contentBar %}
+{% include 'topbar.html' %}
+{% include 'sidebar.html' %}
+{% endblock contentBar %}
+
+{% block content %}
+  <div class="page-content">
+      <div class="container-fluid">
+
+          <form action="" method="post">
+              {% csrf_token %}
+              <div class="row">
+                  <div class="col-12">
+                      <div class="card">
+                          <div class="card-body">
+
+                            <div class="row mb-3">
+                                <label for="example-text-input" class="col-sm-2 col-form-label">Unit Name</label>
+                                <div class="col-sm-10">
+                                  {{form.UnitName}}
+                                </div>
+                            </div>
+                            <div class=" row mb-3">
+                                <label class="col-sm-2 col-form-label">Occupied Status</label>
+                                <div class="col-sm-10">
+                                  {{form.OccupiedStatus}}
+                                </div>
+                            </div>
+                            <div class=" row mb-3">
+                                <label class="col-sm-2 col-form-label">Unit Type</label>
+                                <div class="col-sm-10">
+                                  {{form.UnitType}}
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label for="example-text-input" class="col-sm-2 col-form-label">Covered Area</label>
+                                <div class="col-sm-10">
+                                  {{form.CoveredArea}}
+                                </div>
+                            </div>
+                            <div class=" row mb-3">
+                                <label class="col-sm-2 col-form-label">Is Disputed</label>
+                                <div class="col-sm-10">
+                                  {{form.IsDisputed}}
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label for="example-text-input" class="col-sm-2 col-form-label">Dispute Discussion</label>
+                                <div class="col-sm-10">
+                                  {{form.DisputeDesc}}
+                                </div>
+                            </div>
+                            <div class=" row mb-3">
+                                <label class="col-sm-2 col-form-label">Is Maintenance Applicable</label>
+                                <div class="col-sm-10">
+                                  {{form.IsMaintenanceApplicable}}
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label for="example-text-input" class="col-sm-2 col-form-label">Current Maintenance Per Month </label>
+                                {{form.CurrentMaintenancePM}}
+                            </div>
+                            <div class=" row mb-3">
+                                <label class="col-sm-2 col-form-label">Is BL Expense Applicable</label>
+                                <div class="col-sm-10">
+                                  {{form.IsBLExpenseApplicable}}
+                                </div>
+                            </div>
+                            <div class=" row mb-3">
+                                <label class="col-sm-2 col-form-label">Is DL Expense Applicable</label>
+                                <div class="col-sm-10">
+                                  {{form.IsDLExpenseApplicable}}
+                                </div>
+                            </div>
+                            <div class=" row mb-3">
+                                <label class="col-sm-2 col-form-label">Is UL Expense Applicable</label>
+                                <div class="col-sm-10">
+                                  {{form.IsULExpenseApplicable}}
+                                </div>
+                            </div>
+
+                              <div class="button-items">
+                                   <button class="btn btn-success waves-effect waves-light" type="submit">Submit</button>
+                              </div>
+                          </div>
+                      </div>
+                  </div> <!-- end col -->
+              </div>
+          </form>
+<!--          <div class="col-xl-3 col-md-4 mb-4">-->
+<!--                                <p class="text-muted">Confirm Dialog</p>-->
+<!--                                <button type="button" class="btn btn-primary waves-effect waves-light"-->
+<!--                                    id="alertify-confirm">Click me</button>-->
+<!--                            </div>-->
+      </div> <!-- container-fluid -->
+  </div>
+  <!-- End Page-content -->
+ {% endblock content %}

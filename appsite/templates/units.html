@@ -80,9 +80,9 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body" style="overflow-x: scroll;">
-                        <table id="datatable" class="display nowrap" 
+                        <table id="datatable" class="display nowrap"
                             style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-                           <thead>
+                            <thead>
                                 <tr>
                                     <th>Unit Name</th>
                                     <th>Occupied Status</th>
@@ -99,52 +99,55 @@
                             </thead>
                             <tbody>
                                 {% for i in unitList%}
-                                    <tr>
-                                        <td>{{i.UnitName}}</td>
-                                        <td>{{i.OccupiedStatus}}</td>
-                                        <td>{{i.UnitType}}</td>
-                                        <td>{{i.CoveredArea}}</td>
-                                        <td>{{i.IsDisputed}}</td>
-                                        <td>{{i.DisputeDesc}}</td>
-                                        <td>{{i.IsMaintenanceApplicable}}</td>
-                                        <td>{{i.CurrentMaintenancePM}}</td>
-                                        <!-- <td>{{i.IsBLExpenseApplicable}}</td> -->
-                                        <td>{{i.IsDLExpenseApplicable}}</td>
-                                        <td>{{i.IsULExpenseApplicable}}</td>
-                                        <td>
-                                            <a href="{% url 'unit' i.id %}" class="me-3 text-muted"><i
-                                                    class="mdi mdi-pencil font-size-18"></i></a>
-                                            <a href="javascript:void(0);" class="text-muted"><i
-                                                    class="mdi mdi-close font-size-18"></i></a>
-                                            </td>
-                                    </tr>
+                                <tr>
+                                    <td>{{i.UnitName}}</td>
+                                    <td>{{i.OccupiedStatus}}</td>
+                                    <td>{{i.UnitType}}</td>
+                                    <td>{{i.CoveredArea}}</td>
+                                    <td>{{i.IsDisputed}}</td>
+                                    <td>{{i.DisputeDesc}}</td>
+                                    <td>{{i.IsMaintenanceApplicable}}</td>
+                                    <td>{{i.CurrentMaintenancePM}}</td>
+                                    <!-- <td>{{i.IsBLExpenseApplicable}}</td> -->
+                                    <td>{{i.IsDLExpenseApplicable}}</td>
+                                    <td>{{i.IsULExpenseApplicable}}</td>
+                                    <td>
+                                        <a href="{% url 'updateunit' i.id %}" class="me-3 text-muted"><i
+                                            class="mdi mdi-pencil font-size-18"></i></a>
+                                        <!-- <a href="javascript:void(0);" class="text-muted"><i
+                                                class="mdi mdi-close font-size-18"></i></a> -->
+                                        <a href="{% url 'deleteunit' i.id %}" class="text-muted"><i
+                                                class="mdi mdi-close font-size-18"></i></a>
+                                    </td>
+                                </tr>
                                 {% endfor %}
-<!--                                <tr>-->
-<!--                                    <td>Level 1</td>-->
-<!--                                    <td>Ground</td>-->
-<!--                                    &lt;!&ndash; <td>$45</td>-->
-<!--                                    <td>Jul 20, 2017</td>-->
-<!--                                    <td><i class="fab fa-cc-visa text-muted font-size-20"></i> </td> &ndash;&gt;-->
-<!--                                    <td><span class="badge bg-success">Yes</span></td>-->
-<!--                                    <td>-->
-<!--                                        <a href="javascript:void(0);" class="me-3 text-muted"><i-->
-<!--                                                class="mdi mdi-pencil font-size-18"></i></a>-->
-<!--                                        <a href="javascript:void(0);" class="text-muted"><i-->
-<!--                                                class="mdi mdi-close font-size-18"></i></a>-->
-<!--                                    </td>-->
-<!--                                </tr>-->
+                                <!--                                <tr>-->
+                                <!--                                    <td>Level 1</td>-->
+                                <!--                                    <td>Ground</td>-->
+                                <!--                                    &lt;!&ndash; <td>$45</td>-->
+                                <!--                                    <td>Jul 20, 2017</td>-->
+                                <!--                                    <td><i class="fab fa-cc-visa text-muted font-size-20"></i> </td> &ndash;&gt;-->
+                                <!--                                    <td><span class="badge bg-success">Yes</span></td>-->
+                                <!--                                    <td>-->
+                                <!--                                        <a href="javascript:void(0);" class="me-3 text-muted"><i-->
+                                <!--                                                class="mdi mdi-pencil font-size-18"></i></a>-->
+                                <!--                                        <a href="javascript:void(0);" class="text-muted"><i-->
+                                <!--                                                class="mdi mdi-close font-size-18"></i></a>-->
+                                <!--                                    </td>-->
+                                <!--                                </tr>-->
 
 
                             </tbody>
 
                         </table>
                         <div class="button-items">
-                              <a href="{% url 'addunit' %}" class="btn btn-success waves-effect waves-light" type="submit">Add Unit</a>
-                          </div>
+                            <a href="{% url 'addunit' %}" class="btn btn-success waves-effect waves-light"
+                                type="submit">Add Unit</a>
+                        </div>
                     </div>
 
                 </div>
-                
+
             </div>
 
         </div>
@@ -155,5 +158,4 @@
 </div>
 
 <!-- End Page-content -->
- {% endblock content %}
-
+{% endblock content %}
