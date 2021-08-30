@@ -92,7 +92,7 @@ def units(request):
     if all:
         unitList = Units.objects.filter(buildings__id=currentBuildingId, IsActive=True)
 
-
+    print(unitList)
     return render(request, 'units.html', {'unitList':unitList})
 
 @login_required(login_url='login')

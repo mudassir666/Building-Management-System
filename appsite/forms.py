@@ -42,8 +42,8 @@ class UnitsForm(forms.ModelForm):
 
         widgets = {
             'UnitName': forms.TextInput(attrs={'class': 'form-select'}),
-            'OccupiedStatus': forms.Select(attrs={'class': 'form-select'}),
-            'UnitType': forms.Select(attrs={'class': 'form-select'}),
+            'OccupiedStatus': forms.Select(attrs={'class': 'form-select' , 'placeholder': 'Empty', 'name': 'OccupiedStatus'}),
+            'UnitType': forms.Select(attrs={'class': 'form-select' , 'placeholder': 'Flat', 'name': 'UnitType'}),
             'CoveredArea': forms.TextInput(attrs={'class': 'form-control'}),
             'IsDisputed': forms.Select(attrs={'class': 'form-select'}),
             'DisputeDesc' : forms.TextInput(attrs={'class': 'form-control'}),
